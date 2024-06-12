@@ -6,6 +6,7 @@
 
 void impl(int N, int step, double *p) {
   double *p_next = (double *)aligned_alloc(1, N * N * sizeof(double));
+  double *p_p_next = p_next;
   omp_set_num_threads(28);
   __m256d set = _mm256_set1_pd(0.25);
   memcpy(p_next, p, N * N * sizeof(double));
@@ -45,5 +46,5 @@ void impl(int N, int step, double *p) {
     //     }
   }
 
-  free(p_next);
+  free(p_p_next);
 }
